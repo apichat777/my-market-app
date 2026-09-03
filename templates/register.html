@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5 col-12">
+        <div class="card p-4 rounded-4 shadow">
+            <h3 class="text-center fw-bold mb-4">📝 สมัครสมาชิกใหม่</h3>
+            <form method="POST">
+                <div class="mb-3"><input type="text" name="username" class="form-control form-control-lg bg-dark text-white border-secondary" placeholder="ตั้งชื่อผู้ใช้งาน" required></div>
+                <div class="mb-4"><input type="password" name="password" class="form-control form-control-lg bg-dark text-white border-secondary" placeholder="ตั้งรหัสผ่าน" required></div>
+                <button type="submit" class="btn btn-success btn-lg w-100 fw-bold rounded-3">ยืนยันการสมัครสมาชิก</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
