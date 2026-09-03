@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Trade Radar</title>
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <style>
+        body { background-color: #121212; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .card { background-color: #1e1e1e; border: 1px solid #2d2d2d; color: #fff; }
+        .btn { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark mb-4 shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold text-success fs-3" href="/">📊 RADAR</a>
+            <div>
+                {% if session.get('username') %}
+                    <a href="/vip-picks" class="btn btn-sm btn-warning text-dark me-2">💎 หุ้นเด็ด VIP</a>
+                    <a href="/logout" class="btn btn-sm btn-outline-light">ออกจากระบบ</a>
+                {% elif session.get('is_admin') %}
+                    <a href="/admin-panel" class="btn btn-sm btn-danger me-2">⚙️ แผงควบคุม</a>
+                    <a href="/logout" class="btn btn-sm btn-outline-light">ออกจากระบบ</a>
+                {% else %}
+                    <a href="/login" class="btn btn-sm btn-outline-light me-2">เข้าสู่ระบบ</a>
+                    <a href="/register" class="btn btn-sm btn-success">สมัครสมาชิก</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <div class="container px-3">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
