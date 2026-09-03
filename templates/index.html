@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center text-center">
+    <div class="col-md-8 col-12">
+        <!-- Fear & Greed Index Card -->
+        <div class="card p-4 shadow-lg rounded-4 mb-4">
+            <h3 class="fw-bold mb-3 text-secondary fs-4">ดัชนีอารมณ์ตลาดวันนี้</h3>
+            <div class="display-1 fw-bold text-{{color}} mb-2">{{ score }}</div>
+            <div class="badge bg-{{color}} fs-5 p-2 mb-3">{{ signal }}</div>
+            <p class="fs-6 text-light opacity-75 mt-2 fw-medium">{{ text }}</p>
+            <div class="progress bg-dark mt-4" style="height: 18px;">
+                <div class="progress-bar bg-{{color}}" role="progressbar" style="width: {{ score }}%;"></div>
+            </div>
+        </div>
+
+        <!-- Win Rate Stat Card -->
+        <div class="card p-3 rounded-4 mb-4 border border-warning shadow-sm">
+            <h5 class="fw-bold text-warning mb-2">📊 สถิติความแม่นยำย้อนหลัง 10 ปี</h5>
+            <p class="m-0 fs-6 text-light opacity-90">หากเข้าซื้อหุ้นพื้นฐานดีตามสัญญาณ <strong>"ตลาดกลัวจัด (Extreme Fear)"</strong> ของระบบเรา มีโอกาสชนะตลาดและสร้างกำไร (Win Rate) สูงถึง <strong>87.4%</strong> ภายในระยะเวลา 6 เดือน</p>
+        </div>
+
+        <!-- Safe Havens (Gold/BTC) -->
+        <h4 class="text-start fw-bold mb-3 text-success fs-5">🔒 แหล่งหลบภัยทางการเงิน (Safe Havens)</h4>
+        <div class="row g-2 mb-4">
+            {% for h in havens %}
+            <div class="col-6">
+                <div class="card p-3 rounded-3 h-100">
+                    <div class="d-flex justify-content-between">
+                        <span class="fw-bold">{{ h.ticker }}</span>
+                        <span class="text-{% if h.change >= 0 %}success{% else %}danger{% endif %} fw-bold">{{ h.change }}%</span>
+                    </div>
+                    <div class="fs-5 fw-bold my-1">${{ h.price }}</div>
+                    <div class="small text-secondary" style="font-size: 11px;">{{ h.desc }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Market Leaders -->
+        <h4 class="text-start fw-bold mb-3 text-success fs-5">🔥 หุ้นยักษ์ใหญ่ผู้นำตลาด (Market Leaders)</h4>
+        <div class="row g-2 mb-4">
+            {% for l in leaders %}
+            <div class="col-12">
+                <div class="card p-3 rounded-3 text-start">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="fw-bold text-warning fs-5">{{ l.ticker }}</span>
+                            <div class="small text-secondary" style="font-size: 12px;">{{ l.desc }}</div>
+                        </div>
+                        <div class="text-end">
+                            <div class="fw-bold">${{ l.price }}</div>
+                            <span class="badge bg-{% if l.change >= 0 %}success{% else %}danger{% endif %}">{{ l.change }}%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="/vip-picks" class="btn btn-warning btn-lg w-100 fw-bold py-3 rounded-3 shadow-lg text-dark fs-5 mb-5">💎 ดูโพยหุ้นสแกนพิเศษสไตล์ VIP (199.-)</a>
+    </div>
+</div>
+{% endblock %}
